@@ -47,6 +47,20 @@ class Movies extends Component {
     this.setState({selectedGenre: geners, currentPage: 1})
   }
 
+  getMovieData= () =>{
+    const {pageSize, currentPage, movies:allMovies,sortColumn, selectedGenre} = this.state
+
+    const filteredMovies = selectedGenre && selectedGenre._id
+    ? allMovies.filter(m => m.genre._id === selectedGenre._id)
+    : allMovies
+
+    //sorting after filtering
+
+    const sortedMovies =  _.orderBy(filteredMovies, [sortColumn.path],[sortColumn.order])
+    const movies = paginate(sortedMovies, currentPage, pageSize)
+
+    return {totalCount: movies.length, data :movies}
+  }
 
   handleSort =(sortColumn) =>{
 
@@ -73,16 +87,8 @@ class Movies extends Component {
     let count = this.state.movies.length;
     if (count === 0) 
       return <p>No Movies to Show</p>;
-    const {pageSize, currentPage, movies: allMovies, genres, selectedGenre,sortColumn} = this.state
-    const filteredMovies = selectedGenre && selectedGenre._id
-      ? allMovies.filter(m => m.genre._id === selectedGenre._id)
-      : allMovies
-
-      //sorting after filtering
-
-
-     const sortedMovies =  _.orderBy(filteredMovies, [sortColumn.path],[sortColumn.order])
-    const movies = paginate(sortedMovies, currentPage, pageSize)
+    const {pageSize, currentPage,  genres, ,sortColumn} = this.state
+    const {totalCount, data:movies} = getMovieData()
     console.log(genres)
     return (
       <React.Fragment>
@@ -118,7 +124,7 @@ class Movies extends Component {
               <button type="submit" className="btn btn-primary">Submit</button>
             </form>
             <p>
-              Showing {filteredMovies.length}
+              Showing {totalCount}
               now in theatre
             </p>
             <MoviesTable
@@ -130,7 +136,7 @@ class Movies extends Component {
             <Pagination
               currentPage={currentPage}
               itemsCount
-              ={filteredMovies.length}
+              ={totalCount}
               pageSize={pageSize}
               onPageChange={this.handlePageChange}/>
           </div>
