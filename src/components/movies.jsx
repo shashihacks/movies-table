@@ -59,7 +59,7 @@ class Movies extends Component {
     const sortedMovies =  _.orderBy(filteredMovies, [sortColumn.path],[sortColumn.order])
     const movies = paginate(sortedMovies, currentPage, pageSize)
 
-    return {totalCount: movies.length, data :movies}
+    return {totalCount: filteredMovies.length, data :movies}
   }
 
   handleSort =(sortColumn) =>{
@@ -83,12 +83,10 @@ class Movies extends Component {
   }
 
   render() {
-
-    let count = this.state.movies.length;
-    if (count === 0) 
+    if (totalCount === 0) 
       return <p>No Movies to Show</p>;
-    const {pageSize, currentPage,  genres, ,sortColumn} = this.state
-    const {totalCount, data:movies} = getMovieData()
+    const {pageSize, currentPage,  genres, sortColumn} = this.state
+    const {totalCount, data:movies} = this.getMovieData()
     console.log(genres)
     return (
       <React.Fragment>
