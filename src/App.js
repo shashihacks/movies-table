@@ -7,6 +7,7 @@ import NotFound from './components/notFound';
 import Rentals from './components/rentals';
 import MovieForm from './components/movieForm';
 import Nabvbar from './components/navbar';
+import LoginForm from './components/loginForm';
 class App extends Component {
 
   render() {
@@ -17,7 +18,8 @@ class App extends Component {
           {/* <Movies></Movies> */}
 
           <Switch>
-            <Route path="/movies/:id" component= {MovieForm}></Route>
+          <Route path="/login" component= {LoginForm}></Route>
+          <Route path="/movies/:id" component= {MovieForm}></Route>
             <Route path="/customers" component={Customers}/>
             <Route path="/movies" component={Movies}></Route>
             <Route path="/not-found" component={NotFound}></Route>
