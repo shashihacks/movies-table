@@ -1,49 +1,63 @@
 import React, {Component} from 'react';
 import Input from './common/input';
-
-class LoginForm extends Component {
+import Select from './common/select';
+import Form from './common/form'
+class LoginForm extends Form {
+  options = ['a', 'b', 'c']
   state = {
-    account: {
+    data: {
       email: '',
       password: '',
-      errors:''
-    }
+     
+    },
+    errors: {},
+   
+
   }
-  handleSubmit = (e) => {
-    e.preventDefault();
+
+
+
+
+  doSubmit = () =>{
+    //call server if no errors
     console.log("Submitted")
   }
 
-  handleChange = (e) => {
-    
-    let account = {
-      ...this.state.account
-    }
-    let errors = {}
-    account[e.target.name] = e.target.value
-    if(account.email=='') {
-        account.errors= "enter email"
-    }
-    this.setState({account})
-  }
+
+
+
+  // handleSelect = (e) => {
+  //   this.setState({optionalValue: e.target.value})
+  // }
   render() {
-    const {account} = this.state
+   
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-
-          <Input
+        {this.renderInput('email','Username')}
+        {this.renderInput('password','Password','password')}
+          {/* <Input
             name="email"
-            value={account.username}
+            type="email"
+            autoFocus
+            placeholder = "Enter Email addresss"
+            value={data.username}
             onChange={this.handleChange}
-            label="Username"/>
-          <Input
+            error ={errors.email}
+            label="Username"/> */}
+          {/* <Input
             name="password"
-            value={account.password}
+            type="password"
+            placeholder = "Enter Password"
+            value={data.password}
+            error ={errors.password}
             onChange={this.handleChange}
-            label="Password"/>
+            label="Password"/> */}
 
-          <button type="submit" className="btn btn-primary">Submit</button>
+      {this.renderButton('Submit')}
+          {/* <button 
+          disabled= { this.validate()}
+          type="submit" className="btn btn-primary">Submit</button> */}
         </form>
       </div>
 
