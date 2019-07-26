@@ -1,14 +1,27 @@
 import React from 'react';
 
 const Select = (props) => {
-  const {options, onChange, name, value} = props
-  console.log(props)
+  const {name, label, options, error, ...rest} = props
+  console.log(options[0])
   return (
     <React.Fragment>
+      <div className="form-group">
+        <label htmlFor={name}>{label} </label>
+        <select name={name} id={name} {...rest} className="form-control">
+               <option value=""/>
+                 {options.map(option => (
+                   <option key={option._id} value = {option._id}>
+                     {option.name}
+                   </option>
+                 ))}
+               
+              
+      
 
-      <select onChange={onChange} name={name} value={value}>
-        {options.map(optionValue => <option key={optionValue} value={optionValue}>{optionValue}</option>)}
-      </select>
+        </select>
+        {error && <div className="alert alert-danger">  {error} </div>}
+      </div>
+
     </React.Fragment>
   );
 }

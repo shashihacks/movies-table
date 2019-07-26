@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
-import Input from './common/input';
-import Select from './common/select';
 import Form from './common/form'
 class LoginForm extends Form {
-  options = ['a', 'b', 'c']
   state = {
     data: {
       email: '',
@@ -34,30 +31,10 @@ class LoginForm extends Form {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-        {this.renderInput('email','Username')}
-        {this.renderInput('password','Password','password')}
-          {/* <Input
-            name="email"
-            type="email"
-            autoFocus
-            placeholder = "Enter Email addresss"
-            value={data.username}
-            onChange={this.handleChange}
-            error ={errors.email}
-            label="Username"/> */}
-          {/* <Input
-            name="password"
-            type="password"
-            placeholder = "Enter Password"
-            value={data.password}
-            error ={errors.password}
-            onChange={this.handleChange}
-            label="Password"/> */}
+        {this.renderInput('email','Username','text','Enter email')}
+        {this.renderInput('password','Password','password','Enter Password')}
+        {this.renderButton('Submit')}
 
-      {this.renderButton('Submit')}
-          {/* <button 
-          disabled= { this.validate()}
-          type="submit" className="btn btn-primary">Submit</button> */}
         </form>
       </div>
 

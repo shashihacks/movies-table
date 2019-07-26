@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {getMovies} from "../services/fakeMovieService";
+import {Link, NavLink} from 'react-router-dom'
 
 import Pagination from './common/pagination'
 import paginate from '../utils/paginate'
@@ -96,9 +97,10 @@ class Movies extends Component {
               valueProperty="_id"
               items={genres}></ListGroup>
           </div>
-
+          
           <div className="col-9">
-           
+          <NavLink className="nav-link" to="/movies/new"><div className="btn btn-primary" >Add movie</div></NavLink>
+          
             <p>
               Showing {totalCount}
               now in theatre

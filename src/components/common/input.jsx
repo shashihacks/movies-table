@@ -13,7 +13,6 @@ const Input = (props) => {
         
         className="form-control"
         id={name}
-        aria-describedby="emailHelp"
         placeholder={placeholder} />
         {error && <div className="alert alert-danger">{error}</div>}
     </div>
