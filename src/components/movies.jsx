@@ -99,7 +99,7 @@ class Movies extends Component {
           </div>
           
           <div className="col-9">
-          <NavLink className="nav-link" to="/movies/new"><div className="btn btn-primary" >Add movie</div></NavLink>
+          <Link to="/movies/new" className="btn btn-primary" >Add movie</Link>
           
             <p>
               Showing {totalCount}

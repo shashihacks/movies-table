@@ -50,7 +50,7 @@ class MovieForm extends Form  {
         const movieId = this.props.match.params.id;
         if(movieId == "new") return;
 
-        const movie = getMovie(movie)
+        const movie = getMovie(movieId)
         if(!movie) return this.props.history.replace('/not-found');
 
 
